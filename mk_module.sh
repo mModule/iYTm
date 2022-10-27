@@ -10,11 +10,7 @@ SDIR="$TDIR"/staging
 OUT="$TDIR"/out/"$DATE"
 
 # Set additional variables
-NAME=iYTMusic
-IYTv7a=NONE
-IYTv8a=NONE
-BUZv7a=NONE
-BUZv8a=NONE
+## None
 
 # Set main functions
 
@@ -32,9 +28,7 @@ backup() {
 		mv "$OUT"/"$ZIPNAME" "$OUT"/"$BACKUPFILE";
 		if [ $MODID = v7a ]; then
 			BUZv7a=""$OUT"/"$BACKUPFILE"";
-		fi;
-
-		if [ $MODID = v8a ]; then
+		elif [ $MODID = v8a ]; then
 			BUZv8a=""$OUT"/"$BACKUPFILE"";
 		fi;
 	fi;
@@ -44,8 +38,7 @@ change_log() {
 	echo "## YouTube Music v"$VNAME"" >update.md;
 	echo "" >>update.md;
 	echo "- Module updated to YouTube Music v"$VNAME"" >>update.md;
-	# echo "<br>" >>update.md;
-	echo "- Requires YouTube Music to also be updated to v_"$VNAME"_." >>update.md;
+	echo "- Requires YouTube Music to be updated to v_"$VNAME"_ also." >>update.md;
 }
 
 create_json() {
@@ -54,7 +47,6 @@ create_json() {
 	echo "{" >"$JSON";
 	echo "  \"versionCode\": \""$VCODE"\"," >>"$JSON";
 	echo "  \"version\": \"Module\"," >>"$JSON";
-	# echo "  \"version\": \""$VNAME"\"," >>$JSON;
 	echo "  \"zipUrl\": \"https://github.com/mModule/iYTm/releases/download/v"$VNAME"/"$ZIPNAME"\"," >>"$JSON";
 	echo "  \"changelog\": \"https://github.com/mModule/iYTm/releases/download/v"$VNAME"/update.md\"" >>"$JSON";
 	echo "}" >>"$JSON";
@@ -74,14 +66,14 @@ edit_service_script() {
 	fi;
 }
 
-# get_app_abi() {
-# 	ABI=$(aapt dump badging base.apk | grep native-code | cut -f2 -d "'");
-# 	if [ $ABI = armeabi-v7a ]; then
-# 		ARCH=arm
-# 	elif [ $ABI = arm64-v8a ]; then
-# 		ARCH=arm64
-# 	fi
-# }
+get_app_abi() {
+	ABI=$(aapt dump badging "$i" | grep native-code | cut -f2 -d "'" | cut -f2 -d "-");
+	if [ "$ABI" = "v7a" ]; then
+		ARCH=arm
+	elif [ "$ABI" = "v8a" ]; then
+		ARCH=arm64
+	fi
+}
 
 get_app_version() {
 	VCODE=$(aapt dump badging base.apk| grep version | cut -f4 -d"'");
@@ -93,73 +85,63 @@ module_prop() {
 	echo "id=iytm_"$ARCH"" >>module.prop
 	echo "name=Inject YouTube Music" >>module.prop
 	echo "version=Module" >>module.prop
-	# echo "version=""$VER" >>module.prop
 	echo "versionCode="$VCODE"" >>module.prop
 	echo "author=ip" >>module.prop
 	echo "description=YouTube Music v"$VNAME" ("$ARCH")" >>module.prop
 	echo "updateJson=https://raw.githubusercontent.com/mModule/iYTm/master/iytm"$MODID".json" >>module.prop
 }
 
+zip_ytm(){
+	echo ""
+	echo "iYT Music ("$ARCH")."
+	cp -rf META-INF "$SDIR"
+	cp customize.sh "$SDIR"
+	cp post-fs-data.sh "$SDIR"
+	cp service.sh "$SDIR"
+	cp "$i" "$SDIR"/base.apk
+	cd "$SDIR"
+	get_app_version
+	module_prop
+	edit_service_script
+	ZIPNAME="$NAME"-v"$VER"-"$ARCH".zip
+	if [ $ABI = v7a ]; then
+		IYTv7a=""$OUT"/"$ZIPNAME""
+		BUZv7a=NONE
+	elif [ $ABI = v8a ]; then
+		IYTv8a=""$OUT"/"$ZIPNAME""
+		BUZv8a=NONE
+	fi
+	zip -r "$ZIPNAME" META-INF/* base.apk customize.sh module.prop post-fs-data.sh service.sh # > /dev/null 2>&1
+	backup
+	create_json
+	change_log
+	mv "$ZIPNAME" "$OUT"
+	mv update.md "$OUT"
+	rm -rf *
+	cd "$TDIR"
+}
+
 # Check and create directory(s) if needed.
 check_dir
 
-# Make zip file(s).
+# __ Make zip file(s). __
+### Modified APK file names.
+### YouTube Music (currently full apk only)
+## YouTube Music arm (v7a) 'music_arm.apk'
+## YouTube Music arm64 (v8a) 'music_arm64.apk'
 
-if [ -f music_arm.apk ]; then
-	echo ""; echo "iYT Music (arm)";
-	ARCH=arm
-	MODID=v7a
-	# THEME="Music"
-	cp -rf META-INF "$SDIR"
-	cp customize.sh "$SDIR"
-	cp post-fs-data.sh "$SDIR"
-	cp service.sh "$SDIR"
-	cp music_arm.apk "$SDIR"/base.apk
-	cd "$SDIR"
-	# get_app_abi
-	get_app_version
-	module_prop
-	edit_service_script
-	ZIPNAME="$NAME"-v"$VER"-"$ARCH".zip
-	IYTv7a=""$OUT"/"$ZIPNAME""
-	zip -r "$ZIPNAME" META-INF/* base.apk customize.sh module.prop post-fs-data.sh service.sh
-	backup
-	create_json
-	change_log
-	mv "$ZIPNAME" "$OUT"
-	mv update.md "$OUT"
-	rm -rf *
-	cd "$TDIR"
-fi;
+for i in *.apk; do
+	if [ -f "$i" ]; then
+		if [ "$(aapt dump badging "$i" | grep version | cut -f2 -d"'")" = "com.google.android.apps.youtube.music" ]; then
+			NAME=iYTMusic
+			get_app_abi
+			MODID=$ABI
+			zip_ytm
+		fi
+	fi
+done
 
-if [ -f music_arm64.apk ]; then
-	echo ""; echo "iYT Music (arm64)";
-	ARCH=arm64
-	MODID=v8a
-	# THEME="Music"
-	cp -rf META-INF "$SDIR"
-	cp customize.sh "$SDIR"
-	cp post-fs-data.sh "$SDIR"
-	cp service.sh "$SDIR"
-	cp music_arm64.apk "$SDIR"/base.apk
-	cd "$SDIR"
-	# get_app_abi
-	get_app_version
-	module_prop
-	edit_service_script
-	ZIPNAME="$NAME"-v"$VER"-"$ARCH".zip
-	IYTv8a=""$OUT"/"$ZIPNAME""
-	zip -r "$ZIPNAME" META-INF/* base.apk customize.sh module.prop post-fs-data.sh service.sh
-	backup
-	create_json
-	change_log
-	mv "$ZIPNAME" "$OUT"
-	mv update.md "$OUT"
-	rm -rf *
-	cd "$TDIR"
-fi;
-
-if [ ! -f music_arm.apk ] | [ ! -f music_arm64.apk ]; then
+if [ -z $NAME ]; then
 	echo ""; echo "Nothing to do.";
 fi;
 
