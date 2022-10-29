@@ -24,12 +24,12 @@ Available in the releases tab. [Link](https://github.com/mModule/iYTm/releases)
 - Update to YouTube Music v5.29.52
 
 ### How to
-_Still need to create the wiki pages and xda thread :roll_eyes:_
+_Still need to create the wiki pages :roll_eyes:_
 - [Make the Module](https://github.com/mModule/iYTm/wiki/MakeModule)
 - [Install YouTube](https://github.com/mModule/iYTm/wiki/YouTube)
 
 Module support:<br>
-- xdaDevelopers [Inject YouTube](https://forum.xda-developers.com/t/magisk-module-inject-youtube)
+- xdaDevelopers [Inject YouTube](https://forum.xda-developers.com/t/module-inject-youtube.4512121)
 
 ### About
 This module includes a modified YouTube Music app.<br>
