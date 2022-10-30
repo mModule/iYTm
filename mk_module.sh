@@ -38,7 +38,7 @@ change_log() {
 	echo "## YouTube Music v"$VNAME"" >update.md;
 	echo "" >>update.md;
 	echo "- Module updated to YouTube Music v"$VNAME"" >>update.md;
-	echo "- Requires YouTube Music to be updated to v_"$VNAME"_ also." >>update.md;
+	echo "- Requires YouTube Music to be updated to v"$VNAME" also." >>update.md;
 }
 
 create_json() {
@@ -91,6 +91,18 @@ module_prop() {
 	echo "updateJson=https://raw.githubusercontent.com/mModule/iYTm/master/iytm"$MODID".json" >>module.prop
 }
 
+# set_mod_id() {
+# 	if [ $NAME = iYT ]; then
+# 		if [ $i = black.apk ]; then
+# 			MODID=b
+# 			THEME="Black"
+# 		elif [ $i = dark.apk ]; then
+# 			MODID=d
+# 			THEME="Dark"
+# 		fi
+# 	fi;
+# }
+
 zip_ytm(){
 	echo ""
 	echo "iYT Music ("$ARCH")."
@@ -104,12 +116,10 @@ zip_ytm(){
 	module_prop
 	edit_service_script
 	ZIPNAME="$NAME"-v"$VER"-"$ARCH".zip
-	if [ $ABI = v7a ]; then
+	if [ $MODID = v7a ]; then
 		IYTv7a=""$OUT"/"$ZIPNAME""
-		BUZv7a=NONE
-	elif [ $ABI = v8a ]; then
+	elif [ $MODID = v8a ]; then
 		IYTv8a=""$OUT"/"$ZIPNAME""
-		BUZv8a=NONE
 	fi
 	zip -r "$ZIPNAME" META-INF/* base.apk customize.sh module.prop post-fs-data.sh service.sh # > /dev/null 2>&1
 	backup
@@ -146,29 +156,25 @@ if [ -z $NAME ]; then
 fi;
 
 # Note backup file(s).
-if [ -f $BUZv7a ] || [ -f $BUZv8a ]; then
+if [ -n "$BUZv7a" ] || [ -n "$BUZv8a" ]; then
 	echo ""; echo "Your previous zip file(s) renamed.";
-fi;
-
-if [ -f $BUZv7a ]; then
-	echo " iYT Music (arm) backup as "$BUZv7a"";
-fi;
-
-if [ -f $BUZv8a ]; then
-	echo " iYT Music (arm64) backup as "$BUZv8a"";
+	if [ -n "$BUZv7a" ]; then
+		echo " iYT Music (arm) backup as "$BUZv7a"";
+	fi;
+	if [ -n "$BUZv8a" ]; then
+		echo " iYT Music (arm64) backup as "$BUZv8a"";
+	fi;
 fi;
 
 # Note new file(s).
-if [ -f $IYTv7a ] || [ -f $IYTv8a ]; then
+if [ -n "$IYTv7a" ] || [ -n "$IYTv8a" ]; then
 	echo ""; echo "New zip file(s).";
-fi;
-
-if [ -f $IYTv7a ]; then
-	echo " iYT Music (arm) saved as "$IYTv7a"";
-fi;
-
-if [ -f $IYTv8a ]; then
-	echo " iYT Music (arm64) saved as "$IYTv8a"";
+	if [ -n "$IYTv7a" ]; then
+		echo " iYT Music (arm) saved as "$IYTv7a"";
+	fi;
+	if [ -n "$IYTv8a" ]; then
+		echo " iYT Music (arm64) saved as "$IYTv8a"";
+	fi;
 fi;
 
 # Finish script.
