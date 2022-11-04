@@ -19,9 +19,8 @@ Available in the releases tab. [Link](https://github.com/mModule/iYTm/releases)
 - Reboot device.<br>
 
 ### Recent changes
-- Update to the current Magisk installer script
-- Update the build script
-- Update to YouTube Music v5.29.52
+- Some cleanup
+- Update to YouTube Music v5.31.50
 
 ### How to
 _Still need to create the wiki pages :roll_eyes:_
