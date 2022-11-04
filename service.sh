@@ -43,7 +43,6 @@ fi;
 if [ -z $YTMMOD ]; then
 	while [ -z $YTMVC ]; do
 		YTMVC=$(dumpsys package com.google.android.apps.youtube.music | grep versionCode | cut -f2 -d'=' | tr -d '\n' | cut -f1 -d' ');
-		# sleep 1;
 		date +%N > /dev/null;
 	done;
 fi;
@@ -59,6 +58,5 @@ fi;
 
 # Mount if failsafe(s) pass.
 if [ -z $YTMMOD ]; then
-	# su -c mount -o bind $MODDIR/base.apk $YTPATH/base.apk;
 	su -c mount $MODDIR/base.apk $YTMPATH/base.apk;
 fi;
