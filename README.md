@@ -19,7 +19,7 @@ Available in the releases tab. [Link](https://github.com/mModule/iYTm/releases)
 - Reboot device.<br>
 
 ### Recent changes
-- Update to YouTube Music v5.34.51
+- Update to YouTube Music v5.36.51
 
 ### How to
 _Still need to create the wiki pages :roll_eyes:_
