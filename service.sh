@@ -1,16 +1,21 @@
 #!/system/bin/sh
 
-## Mount a modified version of YouTube Music over regular YouTube Music.
+## This script is part of the iYT module project.
 ## ipdev @ xda-developers
 
 ## Requires YouTube Music to be installed as a user app.
-## Required YouTube Music version is 5.23.50
+## Required YouTube Music version is 5.36.51
 
-# Module directory set by Magisk.
-MODDIR=${0%/*}
+## Module directory(s) set by Magisk.
+# Module Directory
+MDIR=${0%/*}
+# Magisk Modules Directory
+MMDIR=${MDIR%/*}
+# ADB Directory
+ADB=${MMDIR%/*}
 
 # Required versionCode.
-RYTMVC=52350230
+RYTMVC=53651240
 
 # Required architecture.
 # ARCH=arm64-v8a
@@ -58,5 +63,5 @@ fi;
 
 # Mount if failsafe(s) pass.
 if [ -z $YTMMOD ]; then
-	su -c mount $MODDIR/base.apk $YTMPATH/base.apk;
+	su -c mount $ADB/iytm/base.apk $YTMPATH/base.apk;
 fi;
