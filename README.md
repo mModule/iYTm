@@ -19,7 +19,10 @@ Available in the releases tab. [Link](https://github.com/mModule/iYTm/releases)
 - Reboot device.<br>
 
 ### Recent changes
-- Update to YouTube Music v5.36.51
+- Update scripts<br>
+_Due to more apps looking for root and Magisk...<br>
+Switch to mounting the modified apk from outside the module directory._
+- Update to YouTube Music v5.39.52
 
 ### How to
 _Still need to create the wiki pages :roll_eyes:_
