@@ -19,10 +19,8 @@ Available in the releases tab. [Link](https://github.com/mModule/iYTm/releases)
 - Reboot device.<br>
 
 ### Recent changes
-- Update scripts<br>
-_Due to more apps looking for root and Magisk...<br>
-Switch to mounting the modified apk from outside the module directory._
-- Update to YouTube Music v5.39.52
+- Switch to [inotia00's](https://github.com/inotia00/revanced-patches) patches.<br>
+- Update to YouTube Music v5.55.53
 
 ### How to
 _Still need to create the wiki pages :roll_eyes:_
@@ -38,24 +36,35 @@ The modified version is created by patching the stock version using ReVanced. <b
 For more information on ReVanced.<br>
 - See the [ReVanced](https://github.com/revanced) project.
 
-#### Patches included in this Module
+<b>Patches included in this Module</b>
 <details>
 
-* Background Play<br>
-_Enables playing music in the background_.<br>
-* Codecs Unlocked<br>
-_Adds more audio codec options. The new audio codecs usually result in better audio quality_.<br>
-* Exclusive Audio Playback<br>
-_Enables the option to play music without video_.<br>
-* Hide Get Premium<br>
-_Removes all "Get Premium" evidences from the avatar menu_.<br>
-* Minimized Playback Music<br>
-_Enablers minimized playback on Kids music_.<br>
-* Music Video Ads<br>
-_Removes ads in the music player_.<br>
-* Upgrade Button Remover<br>
-_Removes the upgrade tab from the pivot bar_.<br>
-
+| Patch | Description |
+|:--------:|:--------------:|
+| `background-play` | Enables playing music in the background. |
+| `bitrate-default-value` | Set the audio quality to 'Always High' when you first install the app. |
+| `disable-auto-captions` | Disable forced captions from automatically enabling in video player. |
+| `enable-black-navbar` | Sets the navigation bar color to black. |
+| `enable-color-match-player` | Matches the fullscreen player color with the minimized one. |
+| `enable-compact-dialog` | Enable compact dialog on phone. |
+| `enable-force-minimized-player` | Permanently keep player minimized even if another track is played. |
+| `enable-force-shuffle` | Enable force shuffle even if another track is played. |
+| `enable-landscape-mode` | Enables entry into landscape mode by screen rotation on the phone. |
+| `enable-opus-codec` | Enable opus codec when playing audio. |
+| `exclusive-audio-playback` | Enables the option to play music without video. |
+| `hide-button-shelf` | Hides the button shelf from homepage and explorer. |
+| `hide-carousel-shelf` | Hides the carousel shelf from homepage and explorer. |
+| `hide-category-bar` | Hides the music category bar at the top of the homepage. |
+| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. |
+| `hide-music-ads` | Removes ads in the music player. |
+| `hide-music-cast-button` | Hides the cast button in the video player and header. |
+| `hide-new-playlist-button` | Hide the New Playlist button in the Library tab. |
+| `hide-playlist-card` | Hides the playlist card from homepage. |
+| `hide-taste-builder` | Removes the "Tell us which artists you like" card from the home screen. |
+| `hide-upgrade-button` | Remove upgrade tab from pivot bar, hide upgrade banner from homepage. |
+| `minimized-playback-music` | Enables minimized playback on Kids music. |
+| `music-settings` | Adds settings for ReVanced to YouTube Music. |
+| `remember-video-quality` | Save the video quality value whenever you change the video quality. |
 </details>
 
 ---
