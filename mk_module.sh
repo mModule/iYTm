@@ -110,6 +110,7 @@ zip_ytm(){
 	cp customize.sh "$SDIR"
 	cp post-fs-data.sh "$SDIR"
 	cp service.sh "$SDIR"
+	cp uninstall.sh "$SDIR"
 	cp "$i" "$SDIR"/base.apk
 	cd "$SDIR"
 	get_app_version
@@ -121,7 +122,7 @@ zip_ytm(){
 	elif [ $MODID = v8a ]; then
 		IYTv8a=""$OUT"/"$ZIPNAME""
 	fi
-	zip -r "$ZIPNAME" META-INF/* base.apk customize.sh module.prop post-fs-data.sh service.sh # > /dev/null 2>&1
+	zip -r "$ZIPNAME" META-INF/* base.apk customize.sh module.prop post-fs-data.sh service.sh uninstall.sh # > /dev/null 2>&1
 	backup
 	create_json
 	change_log
