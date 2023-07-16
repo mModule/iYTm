@@ -7,6 +7,8 @@
 ## Required YouTube Music version is 5.36.51
 
 ## Module directory(s) set by Magisk.
+MODDIR=${0%/*}
+
 # Module Directory
 MDIR=${0%/*}
 # Magisk Modules Directory
