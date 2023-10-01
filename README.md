@@ -21,7 +21,7 @@ Available in the releases tab. [Link](https://github.com/mModule/iYTm/releases)
 - Reboot device.<br>
 
 ### Recent changes
-- Update to YouTube Music v6.10.51
+- Update to YouTube Music v6.21.51
 <!-- - Switch to [inotia00's](https://github.com/inotia00/revanced-patches) patches.<br> -->
 
 ### How to
@@ -37,6 +37,7 @@ This module includes a modified YouTube Music app.<br>
 The modified version is created by patching the stock version using ReVanced. <br>
 For more information on ReVanced.<br>
 - See the [ReVanced](https://github.com/revanced) project.
+- Currently using [inotia00's](https://github.com/inotia00/revanced-patches) patches.<br>
 
 <b>Patches included in this Module</b>
 <details>
@@ -44,27 +45,27 @@ For more information on ReVanced.<br>
 | Patch | Description |
 |:--------:|:--------------:|
 | `background-play` | Enables playing music in the background. |
-| `bitrate-default-value` | Set the audio quality to 'Always High' when you first install the app. |
+| `bitrate-default-value` | Set the audio quality to "Always High" when you first install the app. |
 | `certificate-spoof` | Spoofs the YouTube Music certificate for Android Auto. |
-| `disable-auto-captions` | Disable forced captions from automatically enabling in video player. |
-| `enable-black-navbar` | Sets the navigation bar color to black. |
-| `enable-force-minimized-player` | Permanently keep player minimized even if another track is played. |
-| `enable-color-match-player` | Matches the fullscreen player color with the minimized one. |
+| `disable-auto-captions` | Disables forced auto captions. |
+| `enable-black-navigation-bar` | Sets the navigation bar color to black. |
+| `enable-color-match-player` | Matches the color of the mini player and the fullscreen player. |
 | `enable-compact-dialog` | Enable compact dialog on phone. |
+| `enable-force-minimized-player` | Keep player permanently minimized even if another track is played. |
 | `enable-landscape-mode` | Enables entry into landscape mode by screen rotation on the phone. |
+| `enable-minimized-playback` | Enables minimized playback on Kids music. |
 | `enable-opus-codec` | Enable opus codec when playing audio. |
 | `exclusive-audio-playback` | Enables the option to play music without video. |
 | `hide-button-shelf` | Hides the button shelf from homepage and explorer. |
 | `hide-carousel-shelf` | Hides the carousel shelf from homepage and explorer. |
+| `hide-cast-button` | Hides the cast button. |
 | `hide-category-bar` | Hides the music category bar at the top of the homepage. |
-| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. |
-| `hide-music-ads` | Removes ads in the music player. |
-| `hide-music-cast-button` | Hides the cast button in the video player and header. |
-| `hide-new-playlist-button` | Hide the New Playlist button in the Library tab. |
+| `hide-get-premium` | Hides "Get Premium" label from the account menu or settings. |
+| `hide-music-ads` | Hides ads before playing a music. |
+| `hide-navigation-bar-component` | Hides navigation bar components. |
+| `hide-new-playlist-button` | Hides the "New playlist" button in the library. |
 | `hide-playlist-card` | Hides the playlist card from homepage. |
-| `hide-taste-builder` | Removes the "Tell us which artists you like" card from the home screen. |
-| `hide-upgrade-button` | Remove upgrade tab from pivot bar, hide upgrade banner from homepage. |
-| `enable-minimized-playback` | Enables minimized playback on Kids music. |
+| `hide-taste-builder` | Hides the "Tell us which artists you like" card from homepage. |
 | `remember-video-quality` | Save the video quality value whenever you change the video quality. |
 | `settings` | Adds settings for ReVanced to YouTube Music. |
 </details>
@@ -80,5 +81,5 @@ For more information on ReVanced.<br>
 - John Wu and team for all things [Magisk](https://github.com/topjohnwu/Magisk).
 - Vanced.
 - ReVanced.
-- [inotia00](https://github.com/inotia00/revanced-patches) for patches.
+<!-- - [inotia00](https://github.com/inotia00/revanced-patches) for patches. -->
 - Everyone that has contributed to YouTube modifications.<br>
